@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import apifunc
+from .views import apicountfunc
 
 urlpatterns = [
-    path('', apifunc, name = 'api'),
+    path('count/', apicountfunc, name = 'count'),
 ]
