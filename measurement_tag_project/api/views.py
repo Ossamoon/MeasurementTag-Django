@@ -1,4 +1,5 @@
 import datetime
+from django.utils.timezone import make_aware
 import uuid
 from PIL import Image
 
@@ -12,7 +13,7 @@ from .models import CookieModel, HistoryModel
 # Create your views here.
 def apicountfunc(request):
     # cookieのkeyとvalueを定義
-    cookie_key = "measurement_tag_project_ossamoon_11"
+    cookie_key = "measurement_tag_project_ossamoon_12"
     cookie_value = "temp"   # valueの値は仮置き
 
     # レスポンスを作成
@@ -42,9 +43,11 @@ def apicountfunc(request):
         # IPアドレスを取得
         client_address = request.META['REMOTE_ADDR']
         # 現在の日時を取得
-        datetime_now = datetime.datetime.now()
+        datetime_now = make_aware(datetime.datetime.now())
+        # リファラページを取得
+        referer_page = request.META['HTTP_REFERER']
         # HistoryModelに新規登録
-        HistoryModel.objects.create(cookie = cookie_value, datetime = datetime_now, address = client_address, pageURL = "url")
+        HistoryModel.objects.create(cookie = cookie_value, datetime = datetime_now, address = client_address, pageURL = referer_page)
         print("create new object at HistoryModel")
         # 訪問回数(CookieModel.visitTimes)を1だけ上げる
         item = CookieModel.objects.get(cookie=cookie_value)
