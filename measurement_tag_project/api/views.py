@@ -13,7 +13,7 @@ def apicountfunc(request):
     cookie_value = "temp"  # valueの値は仮置き
 
     # レスポンスを作成
-    red = Image.new('RGBA', (100, 100), (255, 0, 0, 255))
+    red = Image.new('RGBA', (1, 1), (255, 0, 0, 0))
     response = HttpResponse(content_type="image/png")
     red.save(response, "PNG")
 
