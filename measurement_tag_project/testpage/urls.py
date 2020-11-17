@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import TestPage
+from .views import TestPage1, TestPage2, TestPage3
 
 urlpatterns = [
-    path('', TestPage.as_view(), name = 'test'),
+    path('1', TestPage1.as_view()),
+    path('2', TestPage1.as_view()),
+    path('3', TestPage1.as_view()),
 ]
