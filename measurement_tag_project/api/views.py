@@ -74,13 +74,13 @@ def apigetcountfunc(request):
         if count == 1:
             # 訪問回数をレスポンスに代入
             item = CookieModel.objects.get(cookie=cookie_value)
-            response.write(f"<p>{item.visitTimes}</p>")
+            response.write(item.visitTimes)
         elif count == 0:
-            response.write("<p>Error:NoCookieValue</p>")
+            response.write("Error:NoCookieValue")
         else:
-            response.write("<p>Error:DoubledCookieValue</p>")
+            response.write("Error:DoubledCookieValue")
     else:
-        response.write("<p>Error:NoCookieKey</p>")
+        response.write("Error:NoCookieKey")
 
     # レスポンスを返す
     return response

@@ -1,2 +1,11 @@
 <h1>テストページ2</h1>
-<img src="http://localhost:8000/api/getcount/" alt="[画像]">
+<a id="data"></a>
+<script type="text/javascript">
+    const data = document.getElementById("data");
+    async function callApi() {
+        const res = await fetch("http://localhost:8000/api/getcount/");
+        const text = await res.text();
+        data.innerHTML = text + "回アクセスしました";
+    }
+    callApi();
+</script>
