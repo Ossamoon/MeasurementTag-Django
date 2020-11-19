@@ -9,13 +9,30 @@ Djangoを用いてAPIを設計し、HTML計測タグの実装をした。
 | api/getcount/ | text | 訪問回数またはエラー分を返す |
 
 ### 作成したタグ
-###### 計測用タグ
+###### 1. 計測用タグ
 ```<img src="http://localhost:8000/api/count/" alt="[画像]">```
 - 計測用のタグ
 - このタグを持ったページを訪れると、cookieにIDが割り当てられ訪問回数がカウントされる
 - 1x1ピクセルの透明な画像がレスポンスされ、ブラウザ上に表示される
 
-###### 訪問回数取得用タグ
+###### 2. 訪問回数取得用タグ
+```
+<script type="text/javascript">
+    const data = document.getElementById("data");
+    async function callApi() {
+        const res = await fetch("http://localhost:8000/api/getcount/");
+        const text = await res.text();
+        data.innerHTML = text;
+    }
+    callApi();
+</script>
+```
+- 訪問回数を取得し、表示するためのタグ
+- Cookieに割り振られたIDがデータベースとの整合性がとれていなかった場合、エラー文を表示させる
+- htmlのaタグなどにid="data"を割り当てることにより、訪問回数をブラウザ上に表示できる
+- このタグを踏んでも訪問回数にはカウントされない
+
+###### 3. 複合タグ
 ```
 <script type="text/javascript">
     const lead1 = document.getElementById("lead1");
@@ -37,14 +54,14 @@ Djangoを用いてAPIを設計し、HTML計測タグの実装をした。
     })
 </script>
 ```
-- 訪問回数を取得し、表示するためのタグ
-- Cookieに割り振られたIDがデータベースとの整合性がとれていなかった場合、エラー文を表示させる
+- 上記2つの機能を1つにまとめたタグ
+- 計測されてから訪問回数を取得するよう、JavaScriptのaddEventListenerを用いてAPI取得のタイミングを調節している
+- htmlのaタグなどにid="lead1"やid="lead2"を割り当てることにより、訪問回数に応じたメッセージをブラウザ上に表示できる
 
 ### テストページ
-###### テストページ１(test/1/)
+###### テストページ１(URL: test/1/)
 - 計測用タグを貼り付けたページ
-###### テストページ２(test/2/)
+###### テストページ２(URL: test/2/)
 - 訪問回数取得用タグを貼り付けたページ
-###### テストページ３(test/3/)
-- 計測用タグと訪問回数取得用タグの両方を貼り付けたページ
-- 計測用のAPIが動いてから訪問回数を返すAPIが働くよう、JavascriptのaddEventListenerを利用している
+###### テストページ３(URL: test/3/)
+- 複合タグを貼り付けたページ

@@ -1,11 +1,12 @@
 <h1>テストページ2</h1>
+<a>訪問回数</a>
 <a id="data"></a>
 <script type="text/javascript">
     const data = document.getElementById("data");
     async function callApi() {
         const res = await fetch("http://localhost:8000/api/getcount/");
         const text = await res.text();
-        data.innerHTML = text + "回アクセスしました";
+        data.innerHTML = text;
     }
     callApi();
 </script>
