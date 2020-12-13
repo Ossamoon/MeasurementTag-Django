@@ -61,7 +61,7 @@ Djangoを用いてAPIを設計し、HTML計測タグの実装をした。
 ### ローカル環境の構築
 #### コンテナを起動する
 
-Dockerfileがあるディレクトリ`measurement_tag-project`へ移動し、以下のコマンドを実行。
+Dockerfileがあるディレクトリ`measurement_tag_project`へ移動し、以下のコマンドを実行。
 ```
 $ docker-compose up -d
 ```
@@ -87,9 +87,9 @@ $ docker-compose exec web bash
 http://localhost:8000/test/3 を訪れるごとに、訪問回数がカウントアップされることを確認できる。
 
 ### テストページ
-###### テストページ１(URL: test/1/)
+###### テストページ１(URL: localhost:8000/test/1/)
 - 計測用タグを貼り付けたページ
-###### テストページ２(URL: test/2/)
+###### テストページ２(URL: localhost:8000/test/2/)
 - 訪問回数取得用タグを貼り付けたページ
-###### テストページ３(URL: test/3/)
+###### テストページ３(URL: localhost:8000/test/3/)
 - 複合タグを貼り付けたページ
