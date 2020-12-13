@@ -58,6 +58,34 @@ Djangoを用いてAPIを設計し、HTML計測タグの実装をした。
 - 計測されてから訪問回数を取得するよう、JavaScriptのaddEventListenerを用いてAPI取得のタイミングを調節している
 - htmlのaタグなどにid="lead1"やid="lead2"を割り当てることにより、訪問回数に応じたメッセージをブラウザ上に表示できる
 
+### ローカル環境の構築
+#### コンテナを起動する
+
+Dockerfileがあるディレクトリ`measurement_tag-project`へ移動し、以下のコマンドを実行。
+```
+$ docker-compose up -d
+```
+
+#### マイグレーション
+まず、コンテナ内に入る。
+```
+$ docker-compose exec web bash
+```
+
+マイグレーションを実行。
+```
+(container) $ python3 manage.py migrate
+```
+
+### サーバー起動&動作確認
+```
+(container) $ python3 manage.py runserver 0.0.0.0:8000
+```
+
+ブラウザから http://localhost:8000/test/3 にアクセス。
+
+http://localhost:8000/test/3 を訪れるごとに、訪問回数がカウントアップされることを確認できる。
+
 ### テストページ
 ###### テストページ１(URL: test/1/)
 - 計測用タグを貼り付けたページ
