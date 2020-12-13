@@ -89,7 +89,13 @@ http://localhost:8000/test/3 を訪れるごとに、訪問回数がカウント
 ### テストページ
 ###### テストページ１(URL: localhost:8000/test/1/)
 - 計測用タグを貼り付けたページ
+- 訪問回数をカウントアップするが、画面上に表示はされない
+![スクリーンショット 2020-12-14 0 13 10](https://user-images.githubusercontent.com/73047429/102015888-7a8caa00-3da1-11eb-88b6-3a5b7e14fe19.png)
 ###### テストページ２(URL: localhost:8000/test/2/)
 - 訪問回数取得用タグを貼り付けたページ
+- 訪問回数はカウントアップされず、画面上に訪問回数が表示される
+![スクリーンショット 2020-12-14 0 13 35](https://user-images.githubusercontent.com/73047429/102015929-ab6cdf00-3da1-11eb-9fab-9ba5da80e8f8.png)
 ###### テストページ３(URL: localhost:8000/test/3/)
 - 複合タグを貼り付けたページ
+- 訪問回数がカウントアップされ、訪問回数やエラーに応じた簡単なメッセージが表示される
+![スクリーンショット 2020-12-14 0 14 00](https://user-images.githubusercontent.com/73047429/102015945-bc1d5500-3da1-11eb-8d62-b4bf9db6a63d.png)
